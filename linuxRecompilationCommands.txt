@@ -1,0 +1,40 @@
+// Download Linux Kernel Source Code
+wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.0.7.tar.xz
+// Extract The Source Code
+tar xvf linux-6.0.7.tar.xz
+// Install Required Packages
+sudo apt-get install git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex libelf-dev bison
+
+	git	Tracks and makes a record of all changes during development in the source code. It also allows reverting the changes.
+	fakeroot	Creates the fake root environment.
+	build-essential	Installs development tools such as C, C++, gcc, and g++.
+	ncurses-dev	Provides API for the text-based terminals.
+	xz-utils	Provides fast file compression and file decompression.
+	libssl-dev	Supports SSL and TSL that encrypt data and make the internet connection secure.
+	bc (Basic Calculator)	Supports the interactive execution of statements.
+	flex (Fast Lexical Analyzer Generator)	Generates lexical analyzers that convert characters into tokens.
+	libelf-dev	Issues a shared library for managing ELF files (executable files, core dumps and object code)
+	bison	Converts grammar description to a C program. 
+
+// Navigate to the Linux-6.0.7 dir
+cd linux-6.0.7
+// Copy the existing Linux config file using the cp command
+cp -v /boot/config-$(uname -r) .config
+// To make changes to the configuration file, run the make command
+make menuconfig
+// Build the kernel using make
+make
+// On Ubunty, Disable
+scripts/config --disable SYSTEM_TRUSTED_KEYS
+scripts/config --disable SYSTEM_REVOCATION_KEYS
+// And then
+sudo make modules_install
+sudo make install
+
+// Update the initramfs to the installed kernel version
+sudo update-initramfs -c -k 6.0.7
+// Update the GRUB bootloader with this command
+sudo update-grub
+
+// When the system boots up, verify the kernel version using the uname command
+uname -mrs
