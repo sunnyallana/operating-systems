@@ -1,0 +1,51 @@
+Docker Basic Commands:
+
+1. docker run: Create and start a container based on a Docker image.
+
+   Example:
+   docker run -d --name my_container nginx
+
+2. docker ps: List all running containers.
+
+   Example:
+   docker ps
+
+3. docker images: List all Docker images locally stored on your system.
+
+   Example:
+   docker images
+
+4. docker pull: Download a Docker image from a registry.
+
+   Example:
+   docker pull ubuntu:latest
+
+5. docker stop: Stop one or more running containers.
+
+   Example:
+   docker stop my_container
+
+6. docker rm: Remove one or more containers.
+
+   Example:
+   docker rm my_container
+
+7. docker rmi: Remove one or more images.
+
+   Example:
+   docker rmi nginx
+
+8. docker exec: Run a command inside a running container.
+
+   Example:
+   docker exec -it my_container bash
+
+9. docker build: Build a Docker image from a Dockerfile.
+
+   Example:
+   docker build -t my_image .
+
+10. docker-compose: Define and run multi-container Docker applications using a YAML file.
+
+    Example:
+    docker-compose up -d
